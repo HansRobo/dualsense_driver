@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(ds_driver)
+project(dualsense_driver)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -9,6 +9,7 @@ project(ds_driver)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
