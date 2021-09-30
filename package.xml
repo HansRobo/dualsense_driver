@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>ds_driver</name>
+  <name>dualsense_driver</name>
   <version>0.0.0</version>
-  <description>The ds_driver package</description>
+  <description>The dualsense_driver package</description>
 
   <maintainer email="pythagora.yoshimoto@gmail.com">HansRobo</maintainer>
 
