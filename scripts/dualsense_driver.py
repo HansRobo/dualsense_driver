@@ -9,7 +9,7 @@ class DualSenseDriver:
         rospy.init_node('dualsense_driver')
         self.dualsense = pydualsense()
         self.dualsense.init()
-        self.joy_pub = rospy.Publisher('/joy', Joy, queue_size=10)
+        self.joy_pub = rospy.Publisher('/quadcopter/joy', Joy, queue_size=10)
 
     def update(self):
         joy = Joy()
