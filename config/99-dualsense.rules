@@ -1,0 +1,4 @@
+# This rule is written for the DualSense Play Station 5 controller.
+# This rule is verified to work with Model CFI-ZCT1J.
+
+ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0666"
