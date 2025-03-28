@@ -31,5 +31,5 @@ sudo service udev restart
 ### Run DualSense Driver
 
 ```bash
-rosrun dualsense_driver dualsense_driver.py
+ros2 run dualsense_driver dualsense_driver.py
 ```
