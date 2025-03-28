@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from pydualsense import pydualsense, TriggerModes
 from sensor_msgs.msg import Joy
+from rcl_interfaces.msg import SetParametersResult
 
 class DualSenseDriver(Node):
     def __init__(self):
@@ -12,6 +13,19 @@ class DualSenseDriver(Node):
         self.dualsense.init()
         self.joy_pub = self.create_publisher(Joy, '/joy', 10)
         self.timer = self.create_timer(1.0/60.0, self.update)
+
+        self.right_motor_power = self.declare_parameter('right_motor', 0).value
+        self.left_motor_power = self.declare_parameter('left_motor', 0).value
+
+        self.add_on_set_parameters_callback(self.on_set_parameter_callback)
+
+    def on_set_parameter_callback(self, parameter_list):
+        for param in parameter_list:
+            if param.name == 'right_motor':
+                self.dualsense.setRightMotor(param.value)
+            elif param.name == 'left_motor':
+                self.dualsense.setLeftMotor(param.value)
+        return SetParametersResult(successful=True)
 
     def update(self):
         joy = Joy()
