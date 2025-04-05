@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import math
 import rclpy
 from rclpy.node import Node
 from pydualsense import pydualsense, TriggerModes
