@@ -33,3 +33,11 @@ sudo service udev restart
 ```bash
 ros2 run dualsense_driver dualsense_driver.py
 ```
+
+### Set ramble motor power
+
+Set 0~255 motor power to `left_motor` / `right_motor` ROS 2 parameters.
+
+```bash
+ros2 param set /dualsense_driver left_motor 255
+```
