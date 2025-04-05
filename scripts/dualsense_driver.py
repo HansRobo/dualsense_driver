@@ -14,7 +14,7 @@ class DualSenseDriver(Node):
         self.dualsense = pydualsense()
         self.dualsense.init()
         self.joy_pub = self.create_publisher(Joy, '/joy', 10)
-        self.battery_pub = self.create_publisher(Joy, '/battery', 10)
+        self.battery_pub = self.create_publisher(BatteryState, '/battery', 10)
         self.timer = self.create_timer(1.0/60.0, self.update)
 
         self.right_motor_power = self.declare_parameter('right_motor', 0).value
