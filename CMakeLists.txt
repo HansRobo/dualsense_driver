@@ -3,6 +3,7 @@ project(dualsense_driver)
 
 find_package(ament_cmake REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 install(
   DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/scripts/
