@@ -42,7 +42,7 @@ class DualSenseDriver(Node):
         self.right_motor_power = self._declare_motor_parameter('right_motor', 0)
 
         self.indicator_topic = str(
-            self.declare_parameter('indicator_topic', '/dualsense/indicator').value)
+            self.declare_parameter('indicator_topic', 'dualsense/indicator').value)
         self.indicator_on_color = self._declare_color_param(
             'indicator_on_color', [0, 100, 255])
         self.indicator_off_color = self._declare_color_param(
@@ -62,12 +62,12 @@ class DualSenseDriver(Node):
             name.upper(): mode for name, mode in TriggerModes.__members__.items()
         }
 
-        self.joy_pub = self.create_publisher(Joy, '/joy', 10)
-        self.imu_pub = self.create_publisher(Imu, '/dualsense/imu', 10)
-        self.battery_pub = self.create_publisher(BatteryStateMsg, '/dualsense/battery', 10)
-        self.touch_pub = self.create_publisher(Joy, '/dualsense/touch', 10)
-        self.mic_button_pub = self.create_publisher(Bool, '/dualsense/button/mic', 10)
-        self.touch_button_pub = self.create_publisher(Bool, '/dualsense/button/touch', 10)
+        self.joy_pub = self.create_publisher(Joy, 'joy', 10)
+        self.imu_pub = self.create_publisher(Imu, 'dualsense/imu', 10)
+        self.battery_pub = self.create_publisher(BatteryStateMsg, 'dualsense/battery', 10)
+        self.touch_pub = self.create_publisher(Joy, 'dualsense/touch', 10)
+        self.mic_button_pub = self.create_publisher(Bool, 'dualsense/button/mic', 10)
+        self.touch_button_pub = self.create_publisher(Bool, 'dualsense/button/touch', 10)
 
         self.timer = self.create_timer(1.0 / 60.0, self.update)
 
@@ -111,15 +111,15 @@ class DualSenseDriver(Node):
         return self._normalize_color(value, tuple(default), name, warn=False)
 
     def _create_command_subscriptions(self) -> None:
-        self.create_subscription(ColorRGBA, '/dualsense/light/color', self._on_light_color, 10)
-        self.create_subscription(UInt8, '/dualsense/light/player', self._on_player_id_cmd, 10)
-        self.create_subscription(String, '/dualsense/light/brightness', self._on_light_brightness_cmd, 10)
-        self.create_subscription(Bool, '/dualsense/microphone/mute', self._on_microphone_mute, 10)
-        self.create_subscription(Bool, '/dualsense/microphone/led', self._on_microphone_led, 10)
-        self.create_subscription(Float32, '/dualsense/rumble/left', self._on_left_rumble, 10)
-        self.create_subscription(Float32, '/dualsense/rumble/right', self._on_right_rumble, 10)
-        self.create_subscription(String, '/dualsense/trigger_mode_left', self._on_trigger_mode_left, 10)
-        self.create_subscription(String, '/dualsense/trigger_mode_right', self._on_trigger_mode_right, 10)
+        self.create_subscription(ColorRGBA, 'dualsense/light/color', self._on_light_color, 10)
+        self.create_subscription(UInt8, 'dualsense/light/player', self._on_player_id_cmd, 10)
+        self.create_subscription(String, 'dualsense/light/brightness', self._on_light_brightness_cmd, 10)
+        self.create_subscription(Bool, 'dualsense/microphone/mute', self._on_microphone_mute, 10)
+        self.create_subscription(Bool, 'dualsense/microphone/led', self._on_microphone_led, 10)
+        self.create_subscription(Float32, 'dualsense/rumble/left', self._on_left_rumble, 10)
+        self.create_subscription(Float32, 'dualsense/rumble/right', self._on_right_rumble, 10)
+        self.create_subscription(String, 'dualsense/trigger_mode_left', self._on_trigger_mode_left, 10)
+        self.create_subscription(String, 'dualsense/trigger_mode_right', self._on_trigger_mode_right, 10)
 
     def on_set_parameter_callback(self, parameter_list):
         for param in parameter_list:
